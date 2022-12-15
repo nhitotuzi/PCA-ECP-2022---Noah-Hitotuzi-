@@ -8,4 +8,6 @@ int main() {
 	scanf("%f", &altura);
 	area = base*altura/2.0;
 	printf("%.2f\n", area);	
+
+	return 0;
 }

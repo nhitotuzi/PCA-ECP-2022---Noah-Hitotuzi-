@@ -6,4 +6,6 @@ int main(){
 	scanf("%f", &salario);
 	novo_salario = salario*1.1;
 	printf("Novo salário: R$ %.2f\n", novo_salario);	
+
+	return 0;
 }
