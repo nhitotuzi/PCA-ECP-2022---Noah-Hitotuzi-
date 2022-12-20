@@ -13,4 +13,6 @@ int main() {
 	}
 
 	printf("A soma é dos números ímpares entre 100 e 200 é: %d\n", soma);
+
+	return 0;
 }

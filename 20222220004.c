@@ -22,4 +22,6 @@ int main() {
 
 	printf("O menor valor é: %d\n", menor);
 	printf("O maior valor é: %d\n", maior);
+
+	return 0;
 }

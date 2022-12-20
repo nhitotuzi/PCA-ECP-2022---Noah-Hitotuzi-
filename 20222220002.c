@@ -13,4 +13,6 @@ int main() {
 	}
 
 	printf("A soma é dos números ímpares é: %d\n", soma);
+
+	return 0;
 }
