@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-	int n=1;
+	int n=0;
 	float med, soma=0, maior, menor;
 
 	printf("Digite a média do aluno: ");
