@@ -80,71 +80,53 @@ int Concat(char str[]) {
 
     if (Voltar()) return 1;
     return 0;
+}
 
+int Rev(char str[]) { // printa a string (str) em ordem reversa. 
+	int i, len;
+
+	len = strlen(str);
+
+    printf("\n\n");
+	for (i=len-1; i>=0; i--) printf("%c", str[i]);
+    printf("\n\n");
+
+	if (Voltar()) return 1;
     return 0;
 }
 
-int reverse(char str[], char rev[]) { // retorna a string (str) em ordem reversa em (rev). 
-	int i, len;
-
-	len = strlen(str);
-
-	for (i=0; i<len; i++) rev[len-1 - i] = str[i];
-	rev[len] = '\0';
-
-	return 0;
-}
-
-int s_vogais(char str[], char s_vg[]) { // remove todas as vogais de (str). retorna o resultado em (s_vg)
-	int i, len1, len2=0;
-
-	len1 = strlen(str);
-
-	for (i=0; i<len1; i++) {
-		if (str[i]!='a' && str[i]!='e' && str[i]!='i' && str[i]!='o' &&
-		    str[i]!='u' && str[i]!='A' && str[i]!='E' && str[i]!='I' &&
-		    str[i]!='O' && str[i]!='U') {
-			s_vg[len2] = str[i];
-			len2++;
-		}
-	}
-	s_vg[len2] = '\0';
-
-	return 0;
-}
-
-int maiusculas(char str[], char mai[]) { // transforma os caracteres de (str) em maiúsculos. Retorna o resultado em (mai)
-	int i, len;
-
-	len = strlen(str);
-
-	for (i=0; i<len; i++) {
-		if (str[i] >= 'a' && str[i] <= 'z') mai[i] = str[i] - ('a' - 'A');
-		else mai[i] = str[i];
-	}
-
-	mai[len] = '\0';
-
-	return 0;
-}
-
-int ocorrencias(char f, char str[]) { // retorna o número de ocorrencias de (f) em (str)
+int Ocorr(char str[]) { // retorna o número de ocorrencias de (f) em (str)
 	int i, len, ocrr=0;
-	char m = f, M = f;
+	char f, m, M;
 
 	len = strlen(str);
+
+    printf("\n\nDigite o caractere para encontrar: ");
+    scanf(" %c", &f);
+
+    m = f;
+    M = f;
 
 	if (f >= 'a' && f <= 'z') M = f - 32;
 	else if (f >= 'A' && f <= 'Z') m = f + 32;
 
 	for (i=0; i<len; i++) if (str[i] == M || str[i] == m) ocrr++;
 
-	return ocrr;
+	printf("\nForam encotrados %d ocorrencias do caractere na string.\n\n", ocrr);
+
+    if (Voltar()) return 1;
+    return 0;
 }
 
-int remov_char(char c, char str[], char s_ch[]) { // copia todos os caracteres de (str) em (s_ch), exceto (c), ou seja, remove (c) de (str)
-	int i, len1, len2=0;
-	char m = c, M = c;
+int Rmv(char str[]) { // copia todos os caracteres de (str) em (s_ch), exceto (c), ou seja, remove (c) de (str)
+	int i, len, b=1;
+	char c, f, m, M;
+
+    printf("\n\nDigite o caractere a ser substituído: ");
+    scanf(" %c", &c);
+
+    printf("Digite o caractere para substituir: ");
+    scanf(" %c", &f);
 
 	if (c >= 'a' && c <= 'z') {
 		m = c;
@@ -155,17 +137,88 @@ int remov_char(char c, char str[], char s_ch[]) { // copia todos os caracteres d
 		M = c;
 	}
 
-	len1 = strlen(str);
+	len = strlen(str);
 
-	for (i=0; i<len1; i++) {
-		if (str[i] != M && str[i] != m) {
-			s_ch[len2] = str[i];
-			len2++;
-		}
+    printf("\n\n");
+	for (i=0; i<len; i++) {
+		if (str[i] == c) {
+            if (b) {
+                printf("%c", f);
+                b = 0;
+            }
+            else printf("%c", str[i]);
+		} 
+        else printf("%c", str[i]);
 	}
-	s_ch[len2] = '\0';
+    printf("\n\n\n");
 
-	return 0;
+	if (Voltar()) return 1;
+    return 0;
+}
+
+int Csub(char str[]) {
+    int i, j, len1, len2, esub = 1;
+    char sub[MAX];
+
+    printf("\n\nDigite a substring a ser encontrada: ");
+    scanf(" %s", sub);
+
+    len1 = strlen(str);
+    len2 = strlen(sub);
+
+    if (len2 > len1) {
+        printf("\n Não é substring.\n\n");
+        if (Voltar()) return 1;
+        return 0;
+    }
+
+    for (i=0; i<(len1-len2 +1); i++) {
+        esub = 1;
+        for ( j = 0; j < len2; j++) {
+            if (sub[j] != str[i+j]) esub = 0;
+        }
+        
+        if (esub) {
+            printf("\nÉ substring.\n\n");
+            if (Voltar()) return 1;
+            return 0;
+        }
+    }
+
+    printf("\nNão é substring.\n\n");
+    if (Voltar()) return 1;
+    return 0;
+
+}
+
+int Sub(char str[]) {
+    int i, inic, fim, len;
+
+    len = strlen(str);
+
+    printf("\n\nDigite a posição inicial da substring (0-%d): ", len-1);
+    scanf("%d", &inic);
+
+    while (inic<0 || inic >= len) {
+        printf("Posição inválida, tente novamente\n");
+        printf("Digite a posição inicial da substring (0-%d): ", len-1);
+        scanf("%d", &inic);
+    }
+
+    printf("Digite a posição final da substring (%d-%d): ", inic, len-1);
+    scanf("%d", &fim);
+
+    while (fim<inic || fim >= len) {
+        printf("Posição inválida, tente novamente\n");
+        printf("Digite a posição inicial da substring (%d-%d): ", inic+1, len-1);
+        scanf("%d", &fim);
+    }
+
+    for (i = inic; i <= fim; i++) printf("%c", str[i]);
+    printf("\n\n");
+
+    if (Voltar()) return 1;
+    return 0;
 }
 
 int main() {
@@ -206,23 +259,23 @@ int main() {
             break;
 
         case 'e':
-            Ler_s(str);            
+            if (!Rev(str)) return 0;
             break;
 
         case 'f':
-            Ler_s(str);            
+            if (!Ocorr(str)) return 0;
             break;
 
         case 'g':
-            Ler_s(str);            
+            if (!Rmv(str)) return 0;
             break;
 
         case 'h':
-            Ler_s(str);            
+            if (!Csub(str)) return 0;
             break;
 
         case 'i':
-            Ler_s(str);            
+            if (!Sub(str)) return 0;
             break;
 
         case 'j':
