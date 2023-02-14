@@ -5,13 +5,13 @@
 #define MAX 100
 
 int main() {
-	int i, j, c=1;
+	int i, j;
 	char dados[EQ][AL][MAX], nome[MAX];
 
 	for (i=0; i<EQ; i++) {
 		for (j=0; j<AL; j++) {
 			printf("Digite o nome do aluno %d da equipe %d: ", j+1, i+1);
-			scanf("%s", &dados[i][j]);
+			scanf("%s", dados[i][j]);
 		}
 	}
 
