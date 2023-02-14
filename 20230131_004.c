@@ -288,24 +288,5 @@ int main() {
         }
     }
 
-
-
-	printf("Digite uma palavra: ");
-	scanf("%s", str);
-	printf("Digite uma letra: ");
-	scanf(" %c", &c);
-	//c = 'e';
-	reverse(str, rev);
-	s_vogais(str, s_vg);
-	maiusculas(str, mai);
-	ocrr = ocorrencias(c, str);
-	remov_char(c, str, s_ch);
-
-	printf("Reversa: %s\n", rev);
-	printf("Sem vogais: %s\n", s_vg);
-	printf("Maiúscula: %s\n", mai);
-	printf("Ocorrências de %c: %d\n", c, ocrr);
-	printf("Sem o caracter %c: %s\n", c, s_ch);
-
 return 0;
 }
