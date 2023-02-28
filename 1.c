@@ -84,12 +84,12 @@ int main() {
     
     Novo(nomes_n, sexo_n, notas_n, nomes, sexo, notas);
     
-    
+    /*
     for (int i=0; i<2; i++) {
         for (int j=0; j<7; j++) printf("(%s, %c, %.1f) ", nomes_n[i][j], sexo_n[i][j], notas_n[i][j]);
         printf("\n");
     }
-
+    */
     
 
     return 0;
